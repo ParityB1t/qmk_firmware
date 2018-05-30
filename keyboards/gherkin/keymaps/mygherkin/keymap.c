@@ -22,8 +22,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_0, KC_1, KC_2, KC_3, KC_TRNS),
 
 	[RGB] = KEYMAP(
-		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_HUI, KC_SAI, KC_VAI, KC_TOG, KC_TRNS, 
-		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HUD , KC_SAD, KC_VAD, KC_MOD, KC_TRNS,
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG, KC_TRNS, 
+		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_HUD, RGB_SAD, RGB_VAD, RGB_MOD, KC_TRNS,
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET),
 
 	[GAME] = KEYMAP(
@@ -129,29 +129,32 @@ void matrix_init_user(void) {
 
 void matrix_scan_user(void) {
    #ifdef RGBLIGHT_ENABLE
-   
+      
    uint8_t new_layer = biton32(layer_state);
 
    if (old_layer == new_layer)   
    {
-      switch(new_layer):
+      switch(new_layer)
       {
          case GAME:
-         uint32_t mode = rgblight_get_mode()
+         {         
+         uint32_t mode = rgblight_get_mode();
          if (mode)
             light_mode = mode;
 
          rgblight_mode(1);
          rgblight_setrgb(0x66, 0x66, 0xFF);
          break;
-
+         }
          case ALPHA:
+         {
          if (old_layer == GAME)
             rgblight_mode(light_mode);
          break;
+         }
       }
 
-      old_layer = new_layer
+      old_layer = new_layer;
    }   
 
    #endif //RGBLIGHT_ENABLE
