@@ -4,5 +4,6 @@
 #include "../../config.h"
 
 // place overrides here
-
+#define BACKLIGHT_BREATHING
+#define BACKLIGHT_LEVELS 5
 #endif
