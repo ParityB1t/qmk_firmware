@@ -6,4 +6,5 @@
 // place overrides here
 #define BACKLIGHT_BREATHING
 #define BACKLIGHT_LEVELS 5
+#define TAPPING_TERM 200
 #endif
